@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './CardForm.css'
 
-export default function CardForm() {
+export default function CardForm({ addCard }) {
   const [name, setName] = useState('')
   const [job, setJob] = useState('')
   const [country, setCountry] = useState('')
@@ -18,7 +18,24 @@ export default function CardForm() {
     if (!netWorth) setMissingValues(values => [...values, 'net worth'])
 
     if (name && job && country && age && netWorth) {
-      console.log('no missing values')
+      addCard(cards => [
+        ...cards,
+        {
+          id: cards.length + 1,
+          name: name,
+          job: job,
+          country: country,
+          age: age,
+          netWorth: netWorth,
+        },
+      ])
+
+      setName('')
+      setJob('')
+      setCountry('')
+      setAge('')
+      setNetWorth('')
+      setMissingValues([])
     }
   }
 
@@ -62,7 +79,9 @@ export default function CardForm() {
       <input className="button" type="submit" value="Add User" />
 
       {missingValues.map((missingValue, index) => (
-        <p key={index}>Please insert a {missingValue} value</p>
+        <p className="missing-values" key={index}>
+          Please insert a {missingValue} value
+        </p>
       ))}
     </form>
   )

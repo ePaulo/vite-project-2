@@ -22,3 +22,13 @@ input.button {
   margin: 10px auto;
   border-radius: 3px;
 }
+
+.missing-values {
+  border: 1px solid darkred;
+  border-radius: 3px;
+  padding: 5px;
+  display: block;
+  text-align: center;
+  background-color: red;
+  color: white;
+}

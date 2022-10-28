@@ -1,6 +1,7 @@
 .card-list {
-  margin: auto;
-  padding: 5%;
+  margin: 0 auto;
+  padding: 20px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
 }

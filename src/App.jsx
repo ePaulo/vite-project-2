@@ -6,11 +6,10 @@ import './App.css'
 
 function App() {
   const [celebritiesInfo, setCelebritiesInfo] = useState(celebritiesData)
-  const [formInfo, setFormInfo] = useState({})
-
+  console.log(celebritiesInfo)
   return (
     <div className="app">
-      <CardForm />
+      <CardForm addCard={setCelebritiesInfo} />
       <CardList peopleInfo={celebritiesInfo} />
     </div>
   )
