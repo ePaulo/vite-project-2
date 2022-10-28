@@ -1,0 +1,20 @@
+.card {
+  min-width: 200px;
+  background-color: #ffffff;
+  margin: 10px;
+  padding: 20px 30px;
+  border: none;
+  border-radius: 5px;
+  font-family: Verdana, sans-serif;
+  color: #230000;
+}
+
+.card > h2 {
+  margin-bottom: 10px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.card > p {
+  font-size: 14px;
+}

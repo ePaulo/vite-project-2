@@ -1,10 +1,19 @@
 import { useState } from 'react'
+import { celebritiesData } from './data/data.jsx'
+import CardForm from './components/CardForm.jsx'
+import CardList from './components/CardList.jsx'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [celebritiesInfo, setCelebritiesInfo] = useState(celebritiesData)
+  const [formInfo, setFormInfo] = useState({})
 
-  return <div className="App"></div>
+  return (
+    <div className="app">
+      <CardForm />
+      <CardList peopleInfo={celebritiesInfo} />
+    </div>
+  )
 }
 
 export default App
