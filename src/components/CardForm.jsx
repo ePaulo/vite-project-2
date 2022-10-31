@@ -9,13 +9,28 @@ export default function CardForm({ addCard }) {
   const [netWorth, setNetWorth] = useState('')
   const [missingValues, setMissingValues] = useState([])
 
+  const resetForm = () => {
+    setName('')
+    setJob('')
+    setCountry('')
+    setAge('')
+    setNetWorth('')
+  }
+
+  const findEmptyInputs = () => {
+    const emptyInputs = []
+    if (!name) emptyInputs.push('name')
+    if (!job) emptyInputs.push('job')
+    if (!country) emptyInputs.push('country')
+    if (!age) emptyInputs.push('age')
+    if (!netWorth) emptyInputs.push('net worth')
+    setMissingValues(emptyInputs)
+  }
+
   const handleFormSubmit = e => {
     e.preventDefault()
-    if (!name) setMissingValues(['name'])
-    if (!job) setMissingValues(values => [...values, 'job'])
-    if (!country) setMissingValues(values => [...values, 'country'])
-    if (!age) setMissingValues(values => [...values, 'age'])
-    if (!netWorth) setMissingValues(values => [...values, 'net worth'])
+
+    findEmptyInputs()
 
     if (name && job && country && age && netWorth) {
       addCard(cards => [
@@ -29,57 +44,51 @@ export default function CardForm({ addCard }) {
           netWorth: netWorth,
         },
       ])
-
-      setName('')
-      setJob('')
-      setCountry('')
-      setAge('')
-      setNetWorth('')
-      setMissingValues([])
+      resetForm()
     }
   }
 
   const formElement = (
-    <form className="card-form" onSubmit={handleFormSubmit}>
+    <form className='card-form' onSubmit={handleFormSubmit}>
       <input
-        type="text"
-        name="name"
+        type='text'
+        name='name'
         value={name}
         onChange={e => setName(e.target.value)}
-        placeholder="Full Name (eg Joe Black)"
+        placeholder='Full Name (eg Joe Black)'
       />
       <input
-        type="text"
-        name="job"
+        type='text'
+        name='job'
         value={job}
         onChange={e => setJob(e.target.value)}
-        placeholder="Career Title (eg Actor)"
+        placeholder='Career Title (eg Actor)'
       />
       <input
-        type="text"
-        name="country"
+        type='text'
+        name='country'
         value={country}
         onChange={e => setCountry(e.target.value)}
-        placeholder="Country (home)"
+        placeholder='Country (home)'
       />
       <input
-        type="number"
-        name="age"
+        type='number'
+        name='age'
         value={age}
         onChange={e => setAge(e.target.value)}
-        placeholder="Age (years)"
+        placeholder='Age (years)'
       />
       <input
-        type="number"
-        name="netWorth"
+        type='number'
+        name='netWorth'
         value={netWorth}
         onChange={e => setNetWorth(e.target.value)}
-        placeholder="Net Worth (millions)"
+        placeholder='Net Worth (millions)'
       />
-      <input className="button" type="submit" value="Add User" />
+      <input className='button' type='submit' value='Add User' />
 
       {missingValues.map((missingValue, index) => (
-        <p className="missing-values" key={index}>
+        <p className='missing-values' key={index}>
           Please insert a {missingValue} value
         </p>
       ))}
